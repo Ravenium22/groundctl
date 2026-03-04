@@ -9,8 +9,8 @@ const config = {
   tagline: 'terraform plan for your local developer machine',
   favicon: 'img/favicon.ico',
 
-  url: 'https://Ravenium22.github.io',
-  baseUrl: '/groundctl/',
+  url: 'https://groundctl.vercel.app',
+  baseUrl: '/',
 
   organizationName: 'Ravenium22',
   projectName: 'groundctl',
