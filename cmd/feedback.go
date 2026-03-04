@@ -116,7 +116,7 @@ func runFeedback(cmd *cobra.Command, args []string) error {
 	fmt.Println()
 	fmt.Printf("  %s Feedback saved.\n", okStyle.Render("[ok]"))
 	fmt.Printf("  %s\n", dimStyle.Render(feedbackPath))
-	fmt.Printf("  %s\n", dimStyle.Render("Thank you! To submit to the team, visit github.com/groundctl/groundctl/issues"))
+	fmt.Printf("  %s\n", dimStyle.Render("Thank you! To submit to the team, visit github.com/Ravenium22/groundctl/issues"))
 	fmt.Println()
 
 	return nil

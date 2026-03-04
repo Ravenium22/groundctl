@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/model"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

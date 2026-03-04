@@ -5,9 +5,9 @@ import (
 	"os/exec"
 	"strings"
 
-	"github.com/groundctl/groundctl/internal/drift"
-	"github.com/groundctl/groundctl/internal/model"
-	"github.com/groundctl/groundctl/internal/pkgmanager"
+	"github.com/Ravenium22/groundctl/internal/drift"
+	"github.com/Ravenium22/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/pkgmanager"
 )
 
 // FixResult captures the outcome of a single fix attempt.

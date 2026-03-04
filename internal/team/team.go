@@ -9,8 +9,8 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/model"
 )
 
 // Pull fetches a team .ground.yaml from a source.

@@ -31,19 +31,22 @@ runs:
       shell: bash
       run: |
         VERSION="${{ inputs.version }}"
+        INSTALL_URL="https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh"
+        INSTALL_DIR="$RUNNER_TEMP/groundctl-bin"
+        mkdir -p "$INSTALL_DIR"
         if [ "$VERSION" = "latest" ]; then
           echo "Installing latest groundctl..."
-          curl -fsSL https://get.groundctl.dev | sh
+          curl -fsSL "$INSTALL_URL" | GROUNDCTL_INSTALL_DIR="$INSTALL_DIR" sh
         else
           echo "Installing groundctl $VERSION..."
-          GROUNDCTL_VERSION="$VERSION" curl -fsSL https://get.groundctl.dev | sh
+          curl -fsSL "$INSTALL_URL" | GROUNDCTL_VERSION="$VERSION" GROUNDCTL_INSTALL_DIR="$INSTALL_DIR" sh
         fi
-        GROUND_PATH="$(command -v ground || true)"
-        if [ -z "$GROUND_PATH" ]; then
+        GROUND_PATH="$INSTALL_DIR/ground"
+        if [ ! -x "$GROUND_PATH" ]; then
           echo "::error::ground binary was not found after installation"
           exit 1
         fi
-        echo "$(dirname "$GROUND_PATH")" >> $GITHUB_PATH
+        echo "$INSTALL_DIR" >> $GITHUB_PATH
 
     - name: Run drift check
       shell: bash

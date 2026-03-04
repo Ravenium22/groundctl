@@ -3,7 +3,7 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/groundctl/groundctl/internal/shell"
+	"github.com/Ravenium22/groundctl/internal/shell"
 	"github.com/spf13/cobra"
 )
 

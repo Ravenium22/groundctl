@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/team"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/team"
 	"github.com/spf13/cobra"
 )
 
@@ -48,7 +48,7 @@ func runPull(cmd *cobra.Command, args []string) error {
 	}
 
 	fmt.Printf("%s Saved %s (%d tools)\n",
-		okStyle.Render("✓"), dest, len(cfg.Tools))
+		okStyle.Render("[ok]"), dest, len(cfg.Tools))
 
 	if cfg.Name != "" {
 		fmt.Printf("  %s %s\n", dimStyle.Render("profile:"), cfg.Name)

@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/profile"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/profile"
 	"github.com/spf13/cobra"
 )
 
@@ -114,7 +114,7 @@ func runProfileSwitch(cmd *cobra.Command, args []string) error {
 	}
 
 	fmt.Printf("%s Switched to profile %q (%d tools)\n",
-		okStyle.Render("✓"), name, len(cfg.Tools))
+		okStyle.Render("[ok]"), name, len(cfg.Tools))
 
 	if cfg.Extends != "" {
 		fmt.Printf("  %s extends %q\n", dimStyle.Render("inherits:"), cfg.Extends)
@@ -137,7 +137,7 @@ func runProfileSave(cmd *cobra.Command, args []string) error {
 	}
 
 	fmt.Printf("%s Profile %q saved (%d tools)\n",
-		okStyle.Render("✓"), name, len(cfg.Tools))
+		okStyle.Render("[ok]"), name, len(cfg.Tools))
 	return nil
 }
 
@@ -191,6 +191,6 @@ func runProfileDelete(cmd *cobra.Command, args []string) error {
 		_ = profile.ClearActive()
 	}
 
-	fmt.Printf("%s Profile %q deleted\n", okStyle.Render("✓"), name)
+	fmt.Printf("%s Profile %q deleted\n", okStyle.Render("[ok]"), name)
 	return nil
 }

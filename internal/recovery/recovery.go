@@ -21,7 +21,7 @@ func Wrap(context string) func() {
 			n := runtime.Stack(buf, false)
 			sb.Write(buf[:n])
 
-			sb.WriteString("\n\nPlease report this at: https://github.com/groundctl/groundctl/issues\n")
+			sb.WriteString("\n\nPlease report this at: https://github.com/Ravenium22/groundctl/issues\n")
 			sb.WriteString("Include the above output and the output of 'ground doctor'.\n")
 
 			fmt.Fprint(os.Stderr, sb.String())

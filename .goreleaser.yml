@@ -19,9 +19,9 @@ builds:
       - arm64
     ldflags:
       - -s -w
-      - -X github.com/groundctl/groundctl/cmd.Version={{.Version}}
-      - -X github.com/groundctl/groundctl/cmd.Commit={{.Commit}}
-      - -X github.com/groundctl/groundctl/cmd.Date={{.Date}}
+      - -X github.com/Ravenium22/groundctl/cmd.Version={{.Version}}
+      - -X github.com/Ravenium22/groundctl/cmd.Commit={{.Commit}}
+      - -X github.com/Ravenium22/groundctl/cmd.Date={{.Date}}
 
 archives:
   - id: default
@@ -46,29 +46,10 @@ changelog:
       - "^ci:"
       - "^chore:"
 
-brews:
-  - repository:
-      owner: groundctl
-      name: homebrew-tap
-    name: groundctl
-    homepage: "https://groundctl.dev"
-    description: "terraform plan for your local developer machine"
-    license: "MIT"
-    install: |
-      bin.install "ground"
-
-winget:
-  - name: groundctl
-    publisher: groundctl
-    short_description: "terraform plan for your local developer machine"
-    license: MIT
-    publisher_url: "https://groundctl.dev"
-    package_identifier: "groundctl.groundctl"
-
 nfpms:
   - id: packages
     package_name: groundctl
-    homepage: "https://groundctl.dev"
+    homepage: "https://github.com/Ravenium22/groundctl"
     description: "terraform plan for your local developer machine"
     license: MIT
     formats:

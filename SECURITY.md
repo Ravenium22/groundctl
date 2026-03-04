@@ -13,7 +13,10 @@ If you discover a security vulnerability in groundctl, please report it responsi
 
 **Do NOT open a public GitHub issue for security vulnerabilities.**
 
-Instead, email **security@groundctl.dev** with:
+Instead, open a private security advisory:
+- https://github.com/Ravenium22/groundctl/security/advisories/new
+
+Include:
 
 1. A description of the vulnerability
 2. Steps to reproduce
@@ -29,14 +32,14 @@ We will acknowledge your report within 48 hours and provide a timeline for a fix
 - **Tool binaries**: Runs `--version` commands on locally installed tools (read-only)
 - **Config files**: Reads/writes `.ground.yaml` and `~/.groundctl/` directory
 - **Package managers**: Invokes package managers only during `ground fix` (with user confirmation)
-- **Secret backends**: Resolves secret references via CLI tools (op, vault) — never stores secrets
+- **Secret backends**: Resolves secret references via CLI tools (op, vault) - never stores secrets
 
 ### What groundctl does NOT do
 
 - No network requests (except `ground pull` from user-specified git repos)
 - No data collection without opt-in (`ground telemetry on`)
-- No credential storage — secrets are resolved at runtime, never persisted
-- No elevated privilege operations — `ground fix` uses the user's existing package manager permissions
+- No credential storage - secrets are resolved at runtime, never persisted
+- No elevated privilege operations - `ground fix` uses the user's existing package manager permissions
 
 ### Telemetry
 
@@ -50,9 +53,9 @@ No personally identifiable information, tool versions, config contents, or secre
 ## Dependencies
 
 groundctl uses well-maintained, widely-adopted Go dependencies:
-- `github.com/spf13/cobra` — CLI framework
-- `github.com/Masterminds/semver/v3` — Version constraint parsing
-- `github.com/charmbracelet/lipgloss` — Terminal styling
-- `gopkg.in/yaml.v3` — YAML parsing
+- `github.com/spf13/cobra` - CLI framework
+- `github.com/Masterminds/semver/v3` - Version constraint parsing
+- `github.com/charmbracelet/lipgloss` - Terminal styling
+- `gopkg.in/yaml.v3` - YAML parsing
 
 Dependencies are kept minimal and regularly audited via `go mod tidy` and Dependabot.

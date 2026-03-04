@@ -8,11 +8,11 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/cache"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/detector"
-	"github.com/groundctl/groundctl/internal/drift"
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/cache"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/detector"
+	"github.com/Ravenium22/groundctl/internal/drift"
+	"github.com/Ravenium22/groundctl/internal/model"
 	"github.com/spf13/cobra"
 )
 

@@ -5,8 +5,8 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/team"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/team"
 	"github.com/spf13/cobra"
 )
 
@@ -39,6 +39,6 @@ func runPush(cmd *cobra.Command, args []string) error {
 		return fmt.Errorf("push failed: %w", err)
 	}
 
-	fmt.Printf("%s %s pushed to remote\n", okStyle.Render("✓"), config.DefaultConfigFile)
+	fmt.Printf("%s %s pushed to remote\n", okStyle.Render("[ok]"), config.DefaultConfigFile)
 	return nil
 }

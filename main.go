@@ -1,6 +1,6 @@
 package main
 
-import "github.com/groundctl/groundctl/cmd"
+import "github.com/Ravenium22/groundctl/cmd"
 
 func main() {
 	cmd.Execute()

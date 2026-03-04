@@ -6,8 +6,8 @@ import (
 	"os"
 	"runtime"
 
-	"github.com/groundctl/groundctl/internal/detector"
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/detector"
+	"github.com/Ravenium22/groundctl/internal/model"
 )
 
 // Capture runs all detectors and returns a full machine snapshot.

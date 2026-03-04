@@ -9,10 +9,10 @@ import (
 	"time"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/detector"
-	"github.com/groundctl/groundctl/internal/drift"
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/detector"
+	"github.com/Ravenium22/groundctl/internal/drift"
+	"github.com/Ravenium22/groundctl/internal/model"
 	"github.com/spf13/cobra"
 )
 
@@ -102,7 +102,7 @@ func checkAndReport(cfg *model.GroundConfig, names []string, dimStyle, okStyle, 
 	ts := time.Now().Format("15:04:05")
 
 	if report.Summary.Errors == 0 && report.Summary.Warnings == 0 {
-		fmt.Printf("%s %s — all %d tools ok\n",
+		fmt.Printf("%s %s - all %d tools ok\n",
 			dimStyle.Render("["+ts+"]"),
 			okStyle.Render("clean"),
 			report.Summary.Total)
@@ -121,7 +121,7 @@ func checkAndReport(cfg *model.GroundConfig, names []string, dimStyle, okStyle, 
 			}
 			msg += p
 		}
-		fmt.Printf("%s %s — %s\n",
+		fmt.Printf("%s %s - %s\n",
 			dimStyle.Render("["+ts+"]"),
 			errStyle.Render("drift"),
 			msg)

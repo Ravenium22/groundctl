@@ -5,8 +5,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/groundctl/groundctl/internal/recovery"
-	"github.com/groundctl/groundctl/internal/telemetry"
+	"github.com/Ravenium22/groundctl/internal/recovery"
+	"github.com/Ravenium22/groundctl/internal/telemetry"
 	"github.com/spf13/cobra"
 )
 

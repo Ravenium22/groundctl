@@ -1,4 +1,4 @@
-module github.com/groundctl/groundctl
+module github.com/Ravenium22/groundctl
 
 go 1.25.0
 

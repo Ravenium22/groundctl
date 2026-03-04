@@ -4,7 +4,7 @@ import (
 	"fmt"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/telemetry"
+	"github.com/Ravenium22/groundctl/internal/telemetry"
 	"github.com/spf13/cobra"
 )
 

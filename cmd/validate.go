@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/config"
 	"github.com/spf13/cobra"
 )
 
@@ -56,17 +56,17 @@ func runValidate(cmd *cobra.Command, args []string) error {
 
 	if result.IsValid() {
 		fmt.Printf("%s %s is valid (%d tools)\n",
-			okStyle.Render("✓"), configPath, len(cfg.Tools))
+			okStyle.Render("[ok]"), configPath, len(cfg.Tools))
 		return nil
 	}
 
 	fmt.Println()
 	fmt.Printf("%s %s has %d issue(s):\n\n",
-		errStyle.Render("✗"), configPath, len(result.Errors))
+		errStyle.Render("[x]"), configPath, len(result.Errors))
 
 	for _, e := range result.Errors {
 		fmt.Printf("  %s %s: %s\n",
-			errStyle.Render("•"),
+			errStyle.Render("-"),
 			dimStyle.Render(e.Field),
 			e.Message)
 	}

@@ -8,11 +8,11 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/detector"
-	"github.com/groundctl/groundctl/internal/drift"
-	"github.com/groundctl/groundctl/internal/fixer"
-	"github.com/groundctl/groundctl/internal/pkgmanager"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/detector"
+	"github.com/Ravenium22/groundctl/internal/drift"
+	"github.com/Ravenium22/groundctl/internal/fixer"
+	"github.com/Ravenium22/groundctl/internal/pkgmanager"
 	"github.com/spf13/cobra"
 )
 
@@ -23,7 +23,7 @@ var fixCmd = &cobra.Command{
 using whatever package manager is available on your machine.
 
 Modes:
-  (default)    Interactive — shows plan, asks for confirmation
+  (default)    Interactive - shows plan, asks for confirmation
   --dry-run    Shows what would be done without executing
   --auto       Non-interactive mode for CI environments`,
 	RunE: runFix,
@@ -162,7 +162,7 @@ func runFix(cmd *cobra.Command, args []string) error {
 	// Dry run stops here
 	if fixDryRun {
 		fmt.Println()
-		fmt.Printf("  %s\n\n", dimStyle.Render("Dry run — no changes made."))
+		fmt.Printf("  %s\n\n", dimStyle.Render("Dry run - no changes made."))
 		return nil
 	}
 
@@ -197,7 +197,7 @@ func runFix(cmd *cobra.Command, args []string) error {
 		if r.Success {
 			fmt.Printf("  %s %s\n", okStyle.Render("[ok]"), r.Plan.Tool)
 		} else {
-			fmt.Printf("  %s %s — %s\n", errStyle.Render("[FAIL]"), r.Plan.Tool, r.Error)
+			fmt.Printf("  %s %s - %s\n", errStyle.Render("[FAIL]"), r.Plan.Tool, r.Error)
 			if r.Output != "" {
 				for _, line := range strings.Split(r.Output, "\n") {
 					fmt.Printf("    %s\n", dimStyle.Render(line))
@@ -215,7 +215,7 @@ func runFix(cmd *cobra.Command, args []string) error {
 
 	if hasManual {
 		fmt.Println()
-		fmt.Printf("  %s\n", dimStyle.Render("Some tools require manual installation — see hints above."))
+		fmt.Printf("  %s\n", dimStyle.Render("Some tools require manual installation - see hints above."))
 	}
 
 	fmt.Println()

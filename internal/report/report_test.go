@@ -3,7 +3,7 @@ package report
 import (
 	"testing"
 
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/model"
 	"github.com/stretchr/testify/assert"
 )
 

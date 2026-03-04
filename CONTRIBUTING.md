@@ -6,10 +6,10 @@ Thanks for your interest in contributing! groundctl is an open-source project an
 
 ```bash
 # Clone the repo
-git clone https://github.com/groundctl/groundctl.git
+git clone https://github.com/Ravenium22/groundctl.git
 cd groundctl
 
-# Install Go 1.22+ (https://go.dev/dl/)
+# Install Go 1.25+ (https://go.dev/dl/)
 
 # Build
 go build -o ground .
@@ -81,7 +81,7 @@ The detector supports 18 tools. To add a new one:
 
 ## Good First Issues
 
-Look for issues labeled [`good first issue`](https://github.com/groundctl/groundctl/labels/good%20first%20issue). These are scoped, well-documented tasks ideal for newcomers:
+Look for issues labeled [`good first issue`](https://github.com/Ravenium22/groundctl/labels/good%20first%20issue). These are scoped, well-documented tasks ideal for newcomers:
 
 - Add detection for a new tool (e.g. `helm`, `deno`, `bun`)
 - Add a package manager install command for an existing tool
@@ -108,7 +108,7 @@ go tool cover -html=coverage.out
 
 ## Reporting Bugs
 
-Open a [GitHub issue](https://github.com/groundctl/groundctl/issues/new) with:
+Open a [GitHub issue](https://github.com/Ravenium22/groundctl/issues/new) with:
 
 - groundctl version (`ground version`)
 - OS and architecture

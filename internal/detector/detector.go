@@ -9,7 +9,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/model"
 )
 
 // ToolDetector knows how to detect a specific tool.

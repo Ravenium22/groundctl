@@ -7,8 +7,8 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/model"
-	"github.com/groundctl/groundctl/internal/snapshot"
+	"github.com/Ravenium22/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/snapshot"
 	"github.com/spf13/cobra"
 )
 

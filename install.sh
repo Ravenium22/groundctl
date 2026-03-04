@@ -1,14 +1,16 @@
 #!/bin/sh
-# groundctl installer — https://groundctl.dev
-# Usage: curl -fsSL https://get.groundctl.dev | sh
+# groundctl installer - https://github.com/Ravenium22/groundctl
+# Usage: curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh
 # Optional:
-#   GROUNDCTL_VERSION=v1.2.3 curl -fsSL https://get.groundctl.dev | sh
-#   curl -fsSL https://get.groundctl.dev | sh -s -- --version v1.2.3
+#   curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | GROUNDCTL_VERSION=v1.2.3 sh
+#   curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh -s -- --version v1.2.3
 set -e
 
-REPO="groundctl/groundctl"
-INSTALL_DIR="/usr/local/bin"
+REPO="Ravenium22/groundctl"
+INSTALL_DIR="${GROUNDCTL_INSTALL_DIR:-/usr/local/bin}"
 BINARY="ground"
+INSTALL_SCRIPT_URL="https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh"
+DOCS_URL="https://github.com/Ravenium22/groundctl/tree/main/docs"
 
 # Colors (when terminal supports it)
 RED='\033[0;31m'
@@ -17,8 +19,8 @@ DIM='\033[0;90m'
 BOLD='\033[1m'
 NC='\033[0m'
 
-info() { printf "${GREEN}▸${NC} %s\n" "$1"; }
-warn() { printf "${RED}▸${NC} %s\n" "$1"; }
+info() { printf "${GREEN}*${NC} %s\n" "$1"; }
+warn() { printf "${RED}*${NC} %s\n" "$1"; }
 dim()  { printf "${DIM}%s${NC}\n" "$1"; }
 
 normalize_version() {
@@ -86,11 +88,13 @@ main() {
 groundctl installer
 
 Usage:
-  curl -fsSL https://get.groundctl.dev | sh
-  curl -fsSL https://get.groundctl.dev | sh -s -- --version v1.0.0
+  curl -fsSL ${INSTALL_SCRIPT_URL} | sh
+  curl -fsSL ${INSTALL_SCRIPT_URL} | GROUNDCTL_INSTALL_DIR=\$HOME/.local/bin sh
+  curl -fsSL ${INSTALL_SCRIPT_URL} | sh -s -- --version v1.0.0
 
 Environment variable:
   GROUNDCTL_VERSION=v1.0.0
+  GROUNDCTL_INSTALL_DIR=\$HOME/.local/bin
 EOF
                 exit 0
                 ;;
@@ -147,14 +151,25 @@ EOF
         tar -xzf "$TMPDIR/$ARCHIVE" -C "$TMPDIR"
     fi
 
+    # Ensure target directory exists.
+    if [ ! -d "$INSTALL_DIR" ]; then
+        if mkdir -p "$INSTALL_DIR" 2>/dev/null; then
+            :
+        else
+            info "Creating ${INSTALL_DIR} (requires sudo)..."
+            sudo mkdir -p "$INSTALL_DIR"
+        fi
+    fi
+
     # Install
     if [ -w "$INSTALL_DIR" ]; then
         mv "$TMPDIR/$BINARY" "$INSTALL_DIR/$BINARY"
+        chmod +x "$INSTALL_DIR/$BINARY"
     else
         info "Installing to ${INSTALL_DIR} (requires sudo)..."
         sudo mv "$TMPDIR/$BINARY" "$INSTALL_DIR/$BINARY"
+        sudo chmod +x "$INSTALL_DIR/$BINARY"
     fi
-    chmod +x "$INSTALL_DIR/$BINARY"
 
     info "Installed groundctl ${VERSION} to ${INSTALL_DIR}/${BINARY}"
     printf "\n"
@@ -163,7 +178,7 @@ EOF
     dim "    ground check      # see what's drifted"
     dim "    ground fix        # resolve drift"
     printf "\n"
-    dim "  Docs: https://groundctl.dev"
+    dim "  Docs: ${DOCS_URL}"
     printf "\n"
 }
 

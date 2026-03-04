@@ -34,7 +34,6 @@ jobs:
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
 
   docker:
     runs-on: ubuntu-latest
@@ -56,8 +55,8 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/groundctl/groundctl:${{ github.ref_name }}
-            ghcr.io/groundctl/groundctl:latest
+            ghcr.io/Ravenium22/groundctl:${{ github.ref_name }}
+            ghcr.io/Ravenium22/groundctl:latest
 
   verify:
     runs-on: ${{ matrix.os }}
@@ -69,16 +68,29 @@ jobs:
       - name: Download and verify (Unix)
         if: runner.os != 'Windows'
         run: |
-          curl -fsSL https://get.groundctl.dev | sh
-          ground version
-          ground doctor
+          TAG="${{ github.ref_name }}"
+          VERSION="${TAG#v}"
+          if [ "$RUNNER_OS" = "Linux" ]; then
+            OS="linux"
+          elif [ "$RUNNER_OS" = "macOS" ]; then
+            OS="darwin"
+          else
+            echo "Unsupported runner OS: $RUNNER_OS"
+            exit 1
+          fi
+          ARCHIVE="groundctl_${VERSION}_${OS}_amd64.tar.gz"
+          URL="https://github.com/Ravenium22/groundctl/releases/download/${TAG}/${ARCHIVE}"
+          curl -fsSL "$URL" -o "$ARCHIVE"
+          tar -xzf "$ARCHIVE"
+          ./ground version
+          ./ground doctor
 
       - name: Download and verify (Windows)
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           $tag = "${{ github.ref_name }}"
-          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/groundctl/groundctl/releases/tags/$tag" -Headers @{ "Accept" = "application/vnd.github+json" }
+          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/Ravenium22/groundctl/releases/tags/$tag" -Headers @{ "Accept" = "application/vnd.github+json" }
           $asset = $release.assets | Where-Object { $_.name -match "windows_amd64\.zip$" } | Select-Object -First 1
           if (-not $asset) {
             throw "Windows amd64 release asset not found for tag $tag"

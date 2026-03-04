@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/groundctl/groundctl/internal/model"
-	"github.com/groundctl/groundctl/internal/version"
+	"github.com/Ravenium22/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/version"
 )
 
 // ValidationError represents a single validation issue.

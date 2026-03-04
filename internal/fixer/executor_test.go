@@ -3,8 +3,8 @@ package fixer
 import (
 	"testing"
 
-	"github.com/groundctl/groundctl/internal/model"
-	"github.com/groundctl/groundctl/internal/pkgmanager"
+	"github.com/Ravenium22/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/pkgmanager"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
 )

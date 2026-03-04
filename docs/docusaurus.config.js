@@ -9,10 +9,10 @@ const config = {
   tagline: 'terraform plan for your local developer machine',
   favicon: 'img/favicon.ico',
 
-  url: 'https://groundctl.dev',
-  baseUrl: '/',
+  url: 'https://Ravenium22.github.io',
+  baseUrl: '/groundctl/',
 
-  organizationName: 'groundctl',
+  organizationName: 'Ravenium22',
   projectName: 'groundctl',
 
   onBrokenLinks: 'throw',
@@ -30,7 +30,7 @@ const config = {
       ({
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/groundctl/groundctl/tree/main/docs/',
+          editUrl: 'https://github.com/Ravenium22/groundctl/tree/main/docs/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
@@ -52,7 +52,7 @@ const config = {
             label: 'Docs',
           },
           {
-            href: 'https://github.com/groundctl/groundctl',
+            href: 'https://github.com/Ravenium22/groundctl',
             label: 'GitHub',
             position: 'right',
           },
@@ -72,8 +72,8 @@ const config = {
           {
             title: 'Community',
             items: [
-              { label: 'GitHub Discussions', href: 'https://github.com/groundctl/groundctl/discussions' },
-              { label: 'Twitter', href: 'https://twitter.com/groundctl' },
+              { label: 'GitHub Discussions', href: 'https://github.com/Ravenium22/groundctl/discussions' },
+              { label: 'GitHub Issues', href: 'https://github.com/Ravenium22/groundctl/issues' },
             ],
           },
         ],

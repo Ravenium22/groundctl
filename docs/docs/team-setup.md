@@ -41,8 +41,8 @@ tools:
 
 ### Severity Levels
 
-- **`required`** — Missing or wrong version is an error (exit code 2)
-- **`recommended`** — Missing or wrong version is a warning (exit code 1)
+- **`required`** - Missing or wrong version is an error (exit code 2)
+- **`recommended`** - Missing or wrong version is a warning (exit code 1)
 
 ### Version Constraints
 
@@ -120,7 +120,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: groundctl/groundctl/.github/actions/setup-ground@main
+      - uses: Ravenium22/groundctl/.github/actions/setup-ground@main
         with:
           fail-on-drift: 'true'
           report-format: 'markdown'
@@ -130,7 +130,7 @@ jobs:
 
 ```bash
 # Install
-curl -fsSL https://get.groundctl.dev | sh
+curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh
 
 # Check with CI annotations
 ground check --ci
@@ -144,13 +144,13 @@ ground report --format markdown --output drift-report.md
 Auto-check when entering project directories:
 
 ```bash
-# Bash — add to ~/.bashrc
+# Bash - add to ~/.bashrc
 eval "$(ground hook bash)"
 
-# Zsh — add to ~/.zshrc
+# Zsh - add to ~/.zshrc
 eval "$(ground hook zsh)"
 
-# Fish — add to ~/.config/fish/config.fish
+# Fish - add to ~/.config/fish/config.fish
 ground hook fish | source
 ```
 

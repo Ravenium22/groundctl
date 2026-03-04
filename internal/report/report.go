@@ -6,7 +6,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/model"
 )
 
 // FormatJSON returns the drift report as indented JSON.

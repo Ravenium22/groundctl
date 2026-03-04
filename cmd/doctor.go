@@ -8,9 +8,9 @@ import (
 	"runtime"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/pkgmanager"
-	"github.com/groundctl/groundctl/internal/profile"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/pkgmanager"
+	"github.com/Ravenium22/groundctl/internal/profile"
 	"github.com/spf13/cobra"
 )
 

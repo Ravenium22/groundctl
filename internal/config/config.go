@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/model"
 	"gopkg.in/yaml.v3"
 )
 
@@ -31,7 +31,7 @@ func Save(path string, cfg *model.GroundConfig) error {
 		return fmt.Errorf("could not marshal config: %w", err)
 	}
 
-	header := []byte("# groundctl configuration\n# https://github.com/groundctl/groundctl\n\n")
+	header := []byte("# groundctl configuration\n# https://github.com/Ravenium22/groundctl\n\n")
 	return os.WriteFile(path, append(header, data...), 0644)
 }
 

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/groundctl/groundctl/internal/snapshot"
+	"github.com/Ravenium22/groundctl/internal/snapshot"
 	"github.com/spf13/cobra"
 )
 

@@ -5,9 +5,9 @@ import (
 	"path/filepath"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/detector"
-	"github.com/groundctl/groundctl/internal/model"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/detector"
+	"github.com/Ravenium22/groundctl/internal/model"
 	"github.com/spf13/cobra"
 )
 
@@ -67,14 +67,14 @@ func runInit(cmd *cobra.Command, args []string) error {
 	}
 
 	fmt.Printf("%s Created %s with %d tools detected\n",
-		successStyle.Render("✓"),
+		successStyle.Render("[ok]"),
 		configPath,
 		len(specs),
 	)
 
 	for _, s := range specs {
 		fmt.Printf("  %s %s %s\n",
-			successStyle.Render("•"),
+			successStyle.Render("-"),
 			s.Name,
 			dimStyle.Render(s.Version),
 		)

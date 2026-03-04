@@ -17,32 +17,35 @@ import TabItem from '@theme/TabItem';
 <TabItem value="curl" label="curl (macOS/Linux)" default>
 
 ```bash
-curl -fsSL https://get.groundctl.dev | sh
-```
-
-</TabItem>
-<TabItem value="brew" label="Homebrew">
-
-```bash
-brew install groundctl/tap/groundctl
+curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh
 ```
 
 </TabItem>
 <TabItem value="go" label="Go">
 
 ```bash
-go install github.com/groundctl/groundctl@latest
+go install github.com/Ravenium22/groundctl@latest
 ```
 
 </TabItem>
-<TabItem value="winget" label="Windows">
+<TabItem value="docker" label="Docker">
 
 ```bash
-winget install groundctl.groundctl
+docker run --rm ghcr.io/Ravenium22/groundctl version
+```
+
+</TabItem>
+<TabItem value="manual" label="Manual Binary">
+
+```bash
+# Download the latest release archive for your OS/arch:
+# https://github.com/Ravenium22/groundctl/releases/latest
 ```
 
 </TabItem>
 </Tabs>
+
+Homebrew and winget packages are planned but not yet published from this repo.
 
 Verify the installation:
 

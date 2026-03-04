@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/charmbracelet/lipgloss"
-	"github.com/groundctl/groundctl/internal/config"
-	"github.com/groundctl/groundctl/internal/secrets"
+	"github.com/Ravenium22/groundctl/internal/config"
+	"github.com/Ravenium22/groundctl/internal/secrets"
 	"github.com/spf13/cobra"
 )
 
@@ -174,7 +174,7 @@ func runSecretsList(cmd *cobra.Command, args []string) error {
 		}
 		desc := ""
 		if s.Description != "" {
-			desc = dimStyle.Render(" — " + s.Description)
+			desc = dimStyle.Render(" - " + s.Description)
 		}
 		fmt.Printf("  %-20s %-8s %s%s\n", s.Name, dimStyle.Render("["+backend+"]"), s.Ref, desc)
 	}

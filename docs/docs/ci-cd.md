@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: groundctl/groundctl/.github/actions/setup-ground@main
+      - uses: Ravenium22/groundctl/.github/actions/setup-ground@main
         with:
           version: 'latest'
           fail-on-drift: 'true'
@@ -43,7 +43,7 @@ jobs:
 
 ```yaml
 - name: Install groundctl
-  run: curl -fsSL https://get.groundctl.dev | sh
+  run: curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh
 
 - name: Check environment
   run: ground check --ci
@@ -57,7 +57,7 @@ The `--ci` flag outputs GitHub Actions annotations that appear inline on PR diff
 ground-check:
   image: golang:latest
   script:
-    - curl -fsSL https://get.groundctl.dev | sh
+    - curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh
     - ground check --json > drift-report.json
   artifacts:
     reports:
@@ -71,12 +71,12 @@ ground-check:
 jobs:
   ground-check:
     docker:
-      - image: cimg/go:1.22
+      - image: cimg/go:1.25
     steps:
       - checkout
       - run:
           name: Install groundctl
-          command: curl -fsSL https://get.groundctl.dev | sh
+          command: curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.sh | sh
       - run:
           name: Check environment
           command: ground check
