@@ -30,7 +30,6 @@ dist/
 
 # Generated
 .ground.yaml
-*.gif
 
 # Internal launch content (not public)
 launch/private/

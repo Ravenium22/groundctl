@@ -8,6 +8,8 @@ A CLI that tells your team exactly how their machine has drifted from the standa
 [![Go Report Card](https://goreportcard.com/badge/github.com/Ravenium22/groundctl)](https://goreportcard.com/report/github.com/Ravenium22/groundctl)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
+![groundctl demo](demo.gif)
+
 ## The Problem
 
 Every engineering team faces local environment drift. Someone updates their Node.js version, someone installs a CLI tool globally, and a new hire spends days debugging setup differences.
