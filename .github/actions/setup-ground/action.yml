@@ -1,0 +1,80 @@
+name: 'Setup groundctl'
+description: 'Install groundctl and check your environment against the team standard'
+author: 'groundctl'
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
+
+inputs:
+  version:
+    description: 'groundctl version to install (default: latest)'
+    required: false
+    default: 'latest'
+  config-path:
+    description: 'Path to .ground.yaml (default: auto-detect)'
+    required: false
+    default: ''
+  fail-on-drift:
+    description: 'Fail the step if drift is detected (default: true)'
+    required: false
+    default: 'true'
+  report-format:
+    description: 'Generate a report file (json, markdown, html, or empty to skip)'
+    required: false
+    default: ''
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install groundctl
+      shell: bash
+      run: |
+        VERSION="${{ inputs.version }}"
+        if [ "$VERSION" = "latest" ]; then
+          echo "Installing latest groundctl..."
+          curl -fsSL https://get.groundctl.dev | sh
+        else
+          echo "Installing groundctl $VERSION..."
+          GROUNDCTL_VERSION="$VERSION" curl -fsSL https://get.groundctl.dev | sh
+        fi
+        GROUND_PATH="$(command -v ground || true)"
+        if [ -z "$GROUND_PATH" ]; then
+          echo "::error::ground binary was not found after installation"
+          exit 1
+        fi
+        echo "$(dirname "$GROUND_PATH")" >> $GITHUB_PATH
+
+    - name: Run drift check
+      shell: bash
+      run: |
+        CONFIG_FLAG=""
+        if [ -n "${{ inputs.config-path }}" ]; then
+          CONFIG_FLAG="--config ${{ inputs.config-path }}"
+        fi
+
+        echo "::group::groundctl check"
+        ground check --ci $CONFIG_FLAG || DRIFT_EXIT=$?
+        echo "::endgroup::"
+
+        if [ -n "${{ inputs.report-format }}" ]; then
+          FORMAT="${{ inputs.report-format }}"
+          REPORT_FILE="groundctl-report.$FORMAT"
+          if [ "$FORMAT" = "markdown" ] || [ "$FORMAT" = "md" ]; then
+            REPORT_FILE="groundctl-report.md"
+          fi
+          ground report --format "$FORMAT" --output "$REPORT_FILE" $CONFIG_FLAG
+          echo "report-path=$REPORT_FILE" >> $GITHUB_OUTPUT
+        fi
+
+        if [ "${{ inputs.fail-on-drift }}" = "true" ] && [ "${DRIFT_EXIT:-0}" -ne 0 ]; then
+          echo "::error::Environment drift detected. Run 'ground fix' locally to resolve."
+          exit $DRIFT_EXIT
+        fi
+
+    - name: Upload report artifact
+      if: inputs.report-format != ''
+      uses: actions/upload-artifact@v4
+      with:
+        name: groundctl-report
+        path: groundctl-report.*

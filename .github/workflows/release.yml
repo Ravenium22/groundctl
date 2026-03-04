@@ -1,0 +1,86 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-go@v5
+        with:
+          go-version: "1.26"
+
+      - name: Run tests
+        run: go test -race ./...
+
+      - name: Run GoReleaser
+        uses: goreleaser/goreleaser-action@v6
+        with:
+          distribution: goreleaser
+          version: latest
+          args: release --clean
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+
+  docker:
+    runs-on: ubuntu-latest
+    needs: release
+    permissions:
+      packages: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Log in to GHCR
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: |
+            ghcr.io/groundctl/groundctl:${{ github.ref_name }}
+            ghcr.io/groundctl/groundctl:latest
+
+  verify:
+    runs-on: ${{ matrix.os }}
+    needs: release
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    steps:
+      - name: Download and verify (Unix)
+        if: runner.os != 'Windows'
+        run: |
+          curl -fsSL https://get.groundctl.dev | sh
+          ground version
+          ground doctor
+
+      - name: Download and verify (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          $tag = "${{ github.ref_name }}"
+          $release = Invoke-RestMethod -Uri "https://api.github.com/repos/groundctl/groundctl/releases/tags/$tag" -Headers @{ "Accept" = "application/vnd.github+json" }
+          $asset = $release.assets | Where-Object { $_.name -match "windows_amd64\.zip$" } | Select-Object -First 1
+          if (-not $asset) {
+            throw "Windows amd64 release asset not found for tag $tag"
+          }
+          Invoke-WebRequest -Uri $asset.browser_download_url -OutFile groundctl.zip
+          Expand-Archive groundctl.zip -DestinationPath .
+          .\ground.exe version
+          .\ground.exe doctor

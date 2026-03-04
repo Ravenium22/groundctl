@@ -1,0 +1,77 @@
+version: 2
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: groundctl
+    main: .
+    binary: ground
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - darwin
+      - windows
+    goarch:
+      - amd64
+      - arm64
+    ldflags:
+      - -s -w
+      - -X github.com/groundctl/groundctl/cmd.Version={{.Version}}
+      - -X github.com/groundctl/groundctl/cmd.Commit={{.Commit}}
+      - -X github.com/groundctl/groundctl/cmd.Date={{.Date}}
+
+archives:
+  - id: default
+    format: tar.gz
+    name_template: "groundctl_{{ .Version }}_{{ .Os }}_{{ .Arch }}"
+    format_overrides:
+      - goos: windows
+        format: zip
+
+checksum:
+  name_template: "checksums.txt"
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - "^docs:"
+      - "^test:"
+      - "^ci:"
+      - "^chore:"
+
+brews:
+  - repository:
+      owner: groundctl
+      name: homebrew-tap
+    name: groundctl
+    homepage: "https://groundctl.dev"
+    description: "terraform plan for your local developer machine"
+    license: "MIT"
+    install: |
+      bin.install "ground"
+
+winget:
+  - name: groundctl
+    publisher: groundctl
+    short_description: "terraform plan for your local developer machine"
+    license: MIT
+    publisher_url: "https://groundctl.dev"
+    package_identifier: "groundctl.groundctl"
+
+nfpms:
+  - id: packages
+    package_name: groundctl
+    homepage: "https://groundctl.dev"
+    description: "terraform plan for your local developer machine"
+    license: MIT
+    formats:
+      - deb
+      - rpm
+    bindir: /usr/local/bin
