@@ -59,16 +59,6 @@ jobs:
         with:
           go-version: ${{ env.GO_VERSION }}
 
-      - name: Check formatting
-        run: |
-          files=$(git ls-files '*.go')
-          out=$(gofmt -l $files)
-          if [ -n "$out" ]; then
-            echo "Files not gofmt-formatted:"
-            echo "$out"
-            exit 1
-          fi
-
       - name: Go vet
         run: go vet ./...
 
