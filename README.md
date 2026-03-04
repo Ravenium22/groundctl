@@ -24,7 +24,7 @@ curl -fsSL https://raw.githubusercontent.com/Ravenium22/groundctl/main/install.s
 go install github.com/Ravenium22/groundctl@latest
 
 # Docker
-docker run --rm ghcr.io/Ravenium22/groundctl version
+docker run --rm ghcr.io/ravenium22/groundctl version
 ```
 
 `Homebrew` and `winget` packages are planned but not yet published from this repo.

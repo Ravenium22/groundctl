@@ -55,8 +55,8 @@ jobs:
         with:
           push: true
           tags: |
-            ghcr.io/Ravenium22/groundctl:${{ github.ref_name }}
-            ghcr.io/Ravenium22/groundctl:latest
+            ghcr.io/ravenium22/groundctl:${{ github.ref_name }}
+            ghcr.io/ravenium22/groundctl:latest
 
   verify:
     runs-on: ${{ matrix.os }}

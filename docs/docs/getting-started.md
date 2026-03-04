@@ -31,7 +31,7 @@ go install github.com/Ravenium22/groundctl@latest
 <TabItem value="docker" label="Docker">
 
 ```bash
-docker run --rm ghcr.io/Ravenium22/groundctl version
+docker run --rm ghcr.io/ravenium22/groundctl version
 ```
 
 </TabItem>
