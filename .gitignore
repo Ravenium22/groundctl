@@ -33,7 +33,7 @@ dist/
 *.gif
 
 # Internal launch content (not public)
-launch/
+launch/private/
 
 # Docs (built output)
 docs/node_modules/
